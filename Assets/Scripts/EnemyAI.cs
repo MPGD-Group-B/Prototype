@@ -56,7 +56,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private void patrol() {
+    public void patrol() {
         //check if a route is set
         if (routeSet != true)
         {
@@ -64,7 +64,7 @@ public class EnemyAI : MonoBehaviour
             createRoute(posDirection);
         }
         if (routeSet == true) {
-            Debug.Log(route);
+            //Debug.Log(route);
             enemy.SetDestination(route);
         }
         //check if the route is fully patrolled
@@ -77,15 +77,16 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private void createRoute(bool direction) {
+    public virtual void createRoute(bool direction) {
         routeSet = true;
 
-        float x = range;
+        float y = range;
 
         if (direction == false) {
-            x = -range;
+            y = -range;
         }
-        route = new Vector3(transform.position.x + x, transform.position.y, transform.position.z);
+        Debug.Log(transform.position.y);
+        route = new Vector3(transform.position.x, transform.position.y + y, transform.position.z);
     }
 
     private void attack() {
