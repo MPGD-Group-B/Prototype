@@ -109,4 +109,19 @@ public class PlayerControl : MonoBehaviour
             }
         }
     }
+
+    void Crouch()
+    {
+
+    }
+
+    void Hitted()
+    {
+
+    }
+
+    void Cure()
+    {
+
+    }
 }
