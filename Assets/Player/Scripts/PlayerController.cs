@@ -10,8 +10,12 @@ public class PlayerController : MonoBehaviour
     public float rightSpeed;
     public float jumpSpeed;
     public float gravity;
+    public float sprintMagnification;
+    private bool isSprint;
+    public float crochMagnification;
+    private bool isCroch;
     private float magnification;
-    public Vector2 moveValue;
+    private Vector2 moveValue;
     private float verticalVelocity;
     private Vector3 horizontalVelocity;
 
@@ -31,6 +35,25 @@ public class PlayerController : MonoBehaviour
             verticalVelocity = jumpSpeed;
             controller.Move(Vector3.up * jumpSpeed * Time.deltaTime);
         }
+        isCroch = false;
+    }
+
+    void OnSprint(InputValue value)
+    {
+        isSprint = !isSprint;
+        if(isSprint)
+        {
+            isCroch = false;
+        }
+    }
+
+    void OnCroch(InputValue value)
+    {
+        isCroch = !isCroch;
+        if(isCroch)
+        {
+            isSprint = false;
+        }
     }
 
     // Start is called before the first frame update
@@ -38,6 +61,8 @@ public class PlayerController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         magnification = 1;
+        isCroch = false;
+        isSprint = false;
     }
 
     // Update is called once per frame
@@ -48,13 +73,31 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(isCroch)
+        {
+            magnification = crochMagnification;
+            controller.height = 1;
+        }
+        else
+        {
+            controller.height = 2;
+        }
+        if(isSprint)
+        {
+            magnification = sprintMagnification;
+        }
         if(controller.isGrounded)
         {
             Vector3 forward = transform.TransformDirection(Vector3.forward);
             Vector3 right = transform.TransformDirection(Vector3.right);
-            Vector3 movement = right * moveValue.x * rightSpeed+ forward * moveValue.y * forwardSpeed * magnification;
-            controller.SimpleMove(movement);
+            Vector3 movement = right * moveValue.x * rightSpeed+ forward * moveValue.y * forwardSpeed;
+            controller.SimpleMove(movement * magnification);
+            magnification = 1;
             horizontalVelocity = new Vector3(controller.velocity.x, 0, controller.velocity.z);
+            if (horizontalVelocity == Vector3.zero)
+            {
+                isSprint = false;
+            }
         }
         else
         {

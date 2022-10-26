@@ -34,7 +34,7 @@ Transform:
   m_Children:
   - {fileID: 2437234023108911220}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2437234022564932492
 MonoBehaviour:
@@ -60,7 +60,67 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e2175683-9d23-424d-b294-33959fccae25
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c5fe19ca-91bb-47c5-916c-e29c7ceadc7d
+    m_ActionName: Player/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9085a37f-0cbd-4c85-8f87-3bbe5a68b660
+    m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a53b3da8-f089-42a3-b982-c77ae37ef16c
+    m_ActionName: Player/Sprint[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a874f64f-bbfb-4917-8be7-d4120c9104fc
+    m_ActionName: Player/Croch[/Keyboard/leftCtrl]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0a3e99a3-b5c4-4194-86f2-a2e906a1ed01
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ed50e98c-3571-4e87-9bf6-ff59415b09a8
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9a7e4255-1579-4a47-a9d5-9c272fcc4e0a
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6a4ae6ee-2b70-443b-92e9-dded18a07b3f
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0bf5bbda-8f1b-4f3f-82ae-a3fc139238a9
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 284e908c-f922-4225-b76c-84fad9632c92
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 68e679ad-f802-4501-b7f4-f6ba75acd326
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3fba4e1f-69b9-4439-aa9e-f9a0ef8fcf00
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 04b67791-a35a-4b34-a1fb-d8dd167a7513
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ebdcb54f-3117-45eb-97a6-452392454631
+    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -82,7 +142,8 @@ MonoBehaviour:
   rightSpeed: 3
   jumpSpeed: 10
   gravity: 0.5
-  moveValue: {x: 0, y: 0}
+  sprintMagnification: 2
+  crochMagnification: 0.5
 --- !u!114 &2437234022564932481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +206,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2437234023108911221}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
