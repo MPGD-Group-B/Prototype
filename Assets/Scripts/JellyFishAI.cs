@@ -17,6 +17,6 @@ public class JellyFishAI : MonoBehaviour
     public void Update()
     {
         float y = Mathf.PingPong(Time.time * speed, 1) * height - height/2;
-        jellyFish.transform.position = new Vector3(jellyFish.transform.position.x, y, jellyFish.transform.position.z);
+        jellyFish.transform.position = new Vector3(originalPos.x, originalPos.y + y, originalPos.z);
     }
 }

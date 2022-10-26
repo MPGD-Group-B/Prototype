@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private CharacterController controller;
+    public CharacterController controller;
     public float forwardSpeed;
     public float rightSpeed;
     public float jumpSpeed;
@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveValue;
     private float verticalVelocity;
     private Vector3 horizontalVelocity;
+    private Vector3 originalPos;
+
 
     void OnMove(InputValue value)
     {
@@ -63,6 +65,7 @@ public class PlayerController : MonoBehaviour
         magnification = 1;
         isCroch = false;
         isSprint = false;
+        originalPos = controller.transform.position;
     }
 
     // Update is called once per frame
@@ -101,8 +104,19 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            //Debug.Log("in here");
             verticalVelocity -= gravity;
             controller.Move(horizontalVelocity * Time.deltaTime + Vector3.up * verticalVelocity * Time.deltaTime);
         }
+        
+        if (controller.transform.position.y <= -20)
+        {
+            Debug.Log("teleport");
+            Debug.Log("old position is" + controller.transform.position);
+            Debug.Log(controller.transform.position.y);
+            controller.transform.position = originalPos;
+            Debug.Log("current position is" + controller.transform.position);
+        }
+        //Debug.Log(controller.isGrounded);
     }
 }

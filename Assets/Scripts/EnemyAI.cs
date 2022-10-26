@@ -33,7 +33,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Awake() {
         //set player for ray cast identification
-        player = GameObject.Find("Player").transform;
+        //player = GameObject.Find("Player").transform;
         enemy = GetComponent<NavMeshAgent>();
     }
 
