@@ -19,7 +19,21 @@ public class PlayerController : MonoBehaviour
     private float verticalVelocity;
     private Vector3 horizontalVelocity;
     private Vector3 originalPos;
+    public string stealthTag;
 
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        GameObject hitObject = hit.gameObject;
+        //Debug.Log(hitObject.tag);
+        if (hitObject.tag == stealthTag && isCroch)
+        {
+            this.gameObject.tag = "stealthPlayer";
+        }
+        else
+        {
+            this.gameObject.tag = "Player";
+        }
+    }
 
     void OnMove(InputValue value)
     {
@@ -105,6 +119,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             //Debug.Log("in here");
+            this.gameObject.tag = "Player";
             verticalVelocity -= gravity;
             controller.Move(horizontalVelocity * Time.deltaTime + Vector3.up * verticalVelocity * Time.deltaTime);
         }

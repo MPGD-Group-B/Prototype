@@ -187,6 +187,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2437234022564932493, guid: 209548daf6df08d4197c416503ac7691, type: 3}
+      propertyPath: stealthTag
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 2437234022564932494, guid: 209548daf6df08d4197c416503ac7691, type: 3}
       propertyPath: m_Name
       value: Player
@@ -198,6 +202,10 @@ PrefabInstance:
     - target: {fileID: 2437234022564932494, guid: 209548daf6df08d4197c416503ac7691, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2437234022564932494, guid: 209548daf6df08d4197c416503ac7691, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2437234023108911178, guid: 209548daf6df08d4197c416503ac7691, type: 3}
       propertyPath: m_Depth
@@ -1466,6 +1474,7 @@ MonoBehaviour:
   gravity: 1
   sprintMagnification: 0
   crochMagnification: 0
+  stealthTag: 
 --- !u!114 &498871271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7091,7 +7100,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24668
+  m_Name: pb_Mesh24670
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -12879,7 +12888,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25148
+  m_Name: pb_Mesh24488
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
