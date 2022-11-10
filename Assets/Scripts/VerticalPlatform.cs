@@ -7,20 +7,16 @@ public class VerticalPlatform : MonoBehaviour
     public GameObject verticalPlatform;
     public GameObject nextPlatform;
 
-    public Vector3 originalPos;    
-    public Vector3 targetPos;
-    public Vector3 curPos;
-
-    public Vector3 verticalMovement;
+    private Vector3 originalPos;    
+    private Vector3 targetPos;
     
-    public float time;
+    private float time;
     public float timeDelay;
 
     public float speed;
-    private float yMin, yMax;
 
-    public bool isMovingUp;
-    public bool isMovingDown;
+    private bool isMovingUp;
+    private bool isMovingDown;
     
     
 
@@ -30,8 +26,6 @@ public class VerticalPlatform : MonoBehaviour
     {
         originalPos = verticalPlatform.transform.position;
         targetPos = new Vector3(originalPos.x, nextPlatform.transform.position.y, originalPos.z);
-        yMin = originalPos.y;
-        yMax = targetPos.y;
 
         time = 0f;
         isMovingUp = false;
@@ -39,20 +33,12 @@ public class VerticalPlatform : MonoBehaviour
 
 
     }
-
   
 
     // Update is called once per frame
     void Update()
     {
-
-
-        curPos = verticalPlatform.transform.position;
-        //MoveUp();
-        //verticalPlatform.transform.position += Vector3.up * Time.deltaTime * speed;
         SetMove();
-
-        
     }
 
     private void SetMove()
@@ -93,13 +79,11 @@ public class VerticalPlatform : MonoBehaviour
 
     void MoveUp()
     {
-        verticalMovement = Vector3.up * speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
     }
 
     void MoveDown()
-    {  
-        verticalMovement = Vector3.up * speed * Time.deltaTime;            
+    {             
         transform.position = Vector3.MoveTowards(transform.position, originalPos, speed * Time.deltaTime);            
     }
 
