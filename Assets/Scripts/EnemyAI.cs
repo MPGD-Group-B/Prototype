@@ -42,15 +42,15 @@ public class EnemyAI : MonoBehaviour
         playerInSight = Physics.CheckSphere(transform.position, sightRange, playerObject);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerObject);
 
-        if (playerInSight == true && playerInAttackRange == true)
+        if (playerInSight == true && playerInAttackRange == true && player.tag =="Player")
         {
             attack();
         }
-        else if (playerInSight == true && playerInAttackRange == false)
+        else if (playerInSight == true && playerInAttackRange == false && player.tag == "Player")
         {
             moveTowardPlayer();
         }
-        else if (playerInSight == false && player.tag == "Player") { 
+        else{ 
             patrol();
             //Debug.Log("it is patroling");
         }
