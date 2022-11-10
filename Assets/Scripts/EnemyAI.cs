@@ -33,7 +33,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Awake() {
         //set player for ray cast identification
-        //player = GameObject.Find("Player").transform;
+        player = GameObject.Find("Player").transform;
         enemy = GetComponent<NavMeshAgent>();
     }
 
@@ -80,13 +80,13 @@ public class EnemyAI : MonoBehaviour
     public virtual void createRoute(bool direction) {
         routeSet = true;
 
-        float y = range;
+        float x = range;
 
         if (direction == false) {
-            y = -range;
+            x = -range;
         }
-        Debug.Log(transform.position.y);
-        route = new Vector3(transform.position.x, transform.position.y + y, transform.position.z);
+        Debug.Log(transform.position.x);
+        route = new Vector3(transform.position.x+x, transform.position.y, transform.position.z);
     }
 
     private void attack() {
