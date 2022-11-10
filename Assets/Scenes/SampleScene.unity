@@ -213,7 +213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2437234023108911178, guid: 209548daf6df08d4197c416503ac7691, type: 3}
       propertyPath: field of view
-      value: 41
+      value: 76
       objectReference: {fileID: 0}
     - target: {fileID: 2437234023108911178, guid: 209548daf6df08d4197c416503ac7691, type: 3}
       propertyPath: m_TargetDisplay

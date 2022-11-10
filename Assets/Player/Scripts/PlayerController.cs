@@ -33,6 +33,9 @@ public class PlayerController : MonoBehaviour
         {
             this.gameObject.tag = "Player";
         }
+        if (hitObject.tag == "Enemy") {
+            controller.transform.position = originalPos;
+        }
     }
 
     void OnMove(InputValue value)

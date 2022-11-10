@@ -50,7 +50,7 @@ public class EnemyAI : MonoBehaviour
         {
             moveTowardPlayer();
         }
-        else {
+        else if (playerInSight == false && player.tag == "Player") { 
             patrol();
             //Debug.Log("it is patroling");
         }
