@@ -8,7 +8,7 @@ public class NucliarWaste : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.GetComponent<Collector>().points++; //adding 1 point per nucliar waste
+            other.GetComponent<Collector>().points++; //adding 1 point per nuclear waste
             Destroy(gameObject); // destroying the pickup
         }
     }
