@@ -124,7 +124,19 @@ public class PlayerController : MonoBehaviour
             //Debug.Log("in here");
             this.gameObject.tag = "Player";
             verticalVelocity -= gravity;
-            controller.Move(horizontalVelocity * Time.deltaTime + Vector3.up * verticalVelocity * Time.deltaTime);
+            if (true)
+            {
+                Vector3 forward = transform.TransformDirection(Vector3.forward);
+                Vector3 right = transform.TransformDirection(Vector3.right);
+                Vector3 movement = right * moveValue.x * rightSpeed + forward * moveValue.y * forwardSpeed;
+                controller.SimpleMove(movement * magnification);
+                magnification = 1;
+                horizontalVelocity = new Vector3(controller.velocity.x, 0, controller.velocity.z);
+            }
+            else
+            {
+                controller.Move(horizontalVelocity * Time.deltaTime + Vector3.up * verticalVelocity * Time.deltaTime);
+            }
         }
         
         if (controller.transform.position.y <= -20)
@@ -136,5 +148,14 @@ public class PlayerController : MonoBehaviour
             Debug.Log("current position is" + controller.transform.position);
         }
         //Debug.Log(controller.isGrounded);
+    }
+
+    void SetPosition(Vector3 position)
+    {
+        Debug.Log("teleport");
+        Debug.Log("old position is" + controller.transform.position);
+        Debug.Log(controller.transform.position.y);
+        controller.transform.position = position;
+        Debug.Log("current position is" + controller.transform.position);
     }
 }
