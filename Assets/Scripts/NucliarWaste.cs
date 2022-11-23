@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class NucliarWaste : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
@@ -13,5 +12,4 @@ public class NucliarWaste : MonoBehaviour
             Destroy(gameObject); // destroying the pickup
         }
     }
-
 }
