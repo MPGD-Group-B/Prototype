@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
             //Debug.Log("in here");
             this.gameObject.tag = "Player";
             verticalVelocity -= gravity;
-            if (true)
+            if (false)
             {
                 Vector3 forward = transform.TransformDirection(Vector3.forward);
                 Vector3 right = transform.TransformDirection(Vector3.right);
