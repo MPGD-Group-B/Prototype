@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,6 +21,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 horizontalVelocity;
     private Vector3 originalPos;
     public string stealthTag;
+
+    public bool doubleJump;
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
@@ -49,10 +52,11 @@ public class PlayerController : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        if(controller.isGrounded)
+        if(controller.isGrounded || doubleJump )
         {
             verticalVelocity = jumpSpeed;
             controller.Move(Vector3.up * jumpSpeed * Time.deltaTime);
+            doubleJump = !doubleJump;
         }
         isCroch = false;
     }
@@ -88,7 +92,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (controller.isGrounded && !Input.GetButton("Jump"))
+        {
+            doubleJump = false;
+        }
     }
 
     void FixedUpdate()
