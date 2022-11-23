@@ -23,6 +23,7 @@ public class PlayerControl : MonoBehaviour
     public float jumpForce;
     private bool isGround;
 
+    private bool doubleJump = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +42,10 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         Jump();
+        if (isGround && !Input.GetButton("Jump"))
+            {
+                doubleJump = false;
+            }
     }
 
     void FixedUpdate()
@@ -101,11 +106,13 @@ public class PlayerControl : MonoBehaviour
 
     void Jump()
     {
-        if (isGround)
+        if (isGround || doubleJump)
         {
             if (Input.GetButtonDown("Jump"))
             {
                 GetComponent<Rigidbody>().AddForce(transform.up * jumpForce);
+
+                doubleJump = !doubleJump;
             }
         }
     }
