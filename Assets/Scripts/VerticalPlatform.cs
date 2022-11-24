@@ -4,21 +4,20 @@ using UnityEngine;
 
 public class VerticalPlatform : MonoBehaviour
 {
+    //To check the positions of where the platform will move
     public GameObject verticalPlatform;
     public GameObject nextPlatform;
-
     private Vector3 originalPos;    
     private Vector3 targetPos;
-    
+
+    //To make the platform wait
     private float time;
     public float timeDelay;
-
-    public float speed;
-
     private bool isMovingUp;
     private bool isMovingDown;
-    
-    
+
+    //To set how fast it will move
+    public float speed;
 
 
     // Start is called before the first frame update
@@ -30,8 +29,6 @@ public class VerticalPlatform : MonoBehaviour
         time = 0f;
         isMovingUp = false;
         isMovingDown = false;
-
-
     }
   
 
@@ -41,8 +38,10 @@ public class VerticalPlatform : MonoBehaviour
         SetMove();
     }
 
+    //If the platform is at the target or original position it waits
     private void SetMove()
     {
+        //if the platform is at the original position it waits
         if (transform.position.y == originalPos.y)
         {            
             isMovingDown = false;
@@ -54,6 +53,7 @@ public class VerticalPlatform : MonoBehaviour
                 time = 0f;
             }
         }
+        //if the platform is at the target position it waits
         else if (transform.position.y == targetPos.y)
         {
             isMovingUp = false;
@@ -66,6 +66,7 @@ public class VerticalPlatform : MonoBehaviour
              }
 
         }
+
 
         if (isMovingUp)
         {
