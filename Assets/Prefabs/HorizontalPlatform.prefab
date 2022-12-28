@@ -302,7 +302,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 9ca27f661a894b64ea0c4441d49ee74d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -376,5 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalPlatform: {fileID: 0}
   nextPlatform: {fileID: 0}
+  targetPos: {x: 0, y: 0, z: 0}
+  nextSize: {x: 0, y: 0, z: 0}
   timeDelay: 0
   speed: 0

@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NoiseGround
-  m_Shader: {fileID: 4800000, guid: 39429b8e44deee34e821c65e4cb9d0da, type: 3}
+  m_Name: FogMaterial
+  m_Shader: {fileID: 4800000, guid: bb2876b13de39b14fb9096c33121eb61, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -24,21 +24,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: bd7d0d213a99c4b45ab6bc5789ca5f6e, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: 5d1a91da624cbe3419894ef66da10da7, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Glossiness: 0
-    - _Metallic: 0
-    - _NoiseFrequency: 0.11
-    - _NoiseScale: -0.25
-    - _Tess: 8
+    - _NoiseFrequency: 1
+    - _NoiseScale: 1
+    - _NoiseSpeed: 1
+    - _PixelOffset: 0.005
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _NoiseOffset: {r: 1.28, g: 3.97, b: 1.11, a: 0}
+    - _FogColor: {r: 0.011347453, g: 0.4811321, b: 0.32042587, a: 0}
   m_BuildTextureStacks: []
