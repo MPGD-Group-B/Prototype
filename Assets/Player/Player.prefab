@@ -146,6 +146,7 @@ MonoBehaviour:
   sprintMagnification: 2
   crochMagnification: 0.5
   stealthTag: Ground
+  doubleJump: 0
 --- !u!114 &2437234022564932481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,6 +194,7 @@ GameObject:
   - component: {fileID: 2437234023108911220}
   - component: {fileID: 2437234023108911178}
   - component: {fileID: 2437234023108911179}
+  - component: {fileID: 3254733260510156883}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -266,3 +268,20 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2437234023108911221}
   m_Enabled: 1
+--- !u!114 &3254733260510156883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2437234023108911221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 204a24ea3a7f9c943b76455c29c9d776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mat: {fileID: 2100000, guid: eaa593f4e4cc2004b9399ac6a9e5b178, type: 2}
+  _pixelOffset: 0.0924
+  _noiseScale: 0.4
+  _noiseFrequency: 20
+  _noiseSpeed: 5.6
