@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Ground
   - stealthPlayer
+  - DoubleJump
+  - Waste
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -13,7 +16,7 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
+  - platForm1
   - 
   - 
   - 
