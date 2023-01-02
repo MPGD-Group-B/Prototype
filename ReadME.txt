@@ -24,5 +24,4 @@ Mouse movement: Camera control
 
 
 
-Refrance this project uses Editor GUI table (light version) credit - Jeremy Quenitin , H3D https://www.udemy.com/course/procedural-terrain-generation-with-unity/learn/lecture/10152826#content
-
+Refrance this project uses Editor GUI table package credit - Jeremy Quenitin 
