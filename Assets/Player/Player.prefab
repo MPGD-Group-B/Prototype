@@ -146,6 +146,7 @@ MonoBehaviour:
   sprintMagnification: 2
   crochMagnification: 0.5
   stealthTag: Ground
+  jumpDelay: 5
   doubleJump: 0
 --- !u!114 &2437234022564932481
 MonoBehaviour:

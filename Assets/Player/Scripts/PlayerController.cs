@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 horizontalVelocity;
     private Vector3 originalPos;
     public string stealthTag;
+    private int onAirCount;
+    public int jumpDelay;
 
     public bool doubleJump;
 
@@ -52,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        if(controller.isGrounded || doubleJump )
+        if(onAirCount < jumpDelay || doubleJump )
         {
             verticalVelocity = jumpSpeed;
             controller.Move(Vector3.up * jumpSpeed * Time.deltaTime);
@@ -87,6 +89,7 @@ public class PlayerController : MonoBehaviour
         isCroch = false;
         isSprint = false;
         originalPos = controller.transform.position;
+        onAirCount = 0;
     }
 
     // Update is called once per frame
@@ -115,6 +118,7 @@ public class PlayerController : MonoBehaviour
         }
         if(controller.isGrounded)
         {
+            onAirCount = 0;
             Vector3 forward = transform.TransformDirection(Vector3.forward);
             Vector3 right = transform.TransformDirection(Vector3.right);
             Vector3 movement = right * moveValue.x * rightSpeed+ forward * moveValue.y * forwardSpeed;
@@ -128,20 +132,30 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            onAirCount++;
             //Debug.Log("in here");
             this.gameObject.tag = "Player";
             verticalVelocity -= gravity;
-            if (false)
+            if (true)
             {
-                Vector3 forward = transform.TransformDirection(Vector3.forward);
-                Vector3 right = transform.TransformDirection(Vector3.right);
-                Vector3 movement = right * moveValue.x * rightSpeed + forward * moveValue.y * forwardSpeed;
-                controller.SimpleMove(movement * magnification);
-                magnification = 1;
-                horizontalVelocity = new Vector3(controller.velocity.x, 0, controller.velocity.z);
+                if(horizontalVelocity == new Vector3(0, 0, 0))
+                {
+                    Vector3 forward = transform.TransformDirection(Vector3.forward);
+                    Vector3 right = transform.TransformDirection(Vector3.right);
+                    Vector3 movement = right * moveValue.x / 2.0f * rightSpeed + forward * moveValue.y * forwardSpeed / 2.0f;
+                    controller.Move(movement * Time.deltaTime + Vector3.up * verticalVelocity * Time.deltaTime);
+                    horizontalVelocity = new Vector3(controller.velocity.x, 0, controller.velocity.z);
+                }
+                else
+                {
+                    controller.Move(horizontalVelocity * Time.deltaTime + Vector3.up * verticalVelocity * Time.deltaTime);
+                }
             }
             else
             {
+                Vector3 forward = transform.TransformDirection(Vector3.forward);
+                Vector3 right = transform.TransformDirection(Vector3.right);
+                horizontalVelocity = Vector3.RotateTowards(horizontalVelocity, right, moveValue.x * 1.0f, 0.0f);
                 controller.Move(horizontalVelocity * Time.deltaTime + Vector3.up * verticalVelocity * Time.deltaTime);
             }
         }
