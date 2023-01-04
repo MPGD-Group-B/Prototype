@@ -15843,15 +15843,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resetTerrain: 1
-  xScale: 0.006
-  yScale: 0.006
+  xScale: 0.008
+  yScale: 0.009
   xOffset: 3373
   yOffset: 4273
   octaves: 3
   persistance: 8
   heightScale: 0.249
   terrain: {fileID: 1529285952}
-  terrainData: {fileID: 15600000, guid: b9987bcd599867c4aad3f1087d2ef68e, type: 2}
+  terrainData: {fileID: 15600000, guid: fa08a202a9a859d49a4396becae6e20a, type: 2}
 --- !u!154 &1529285951
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -15905,7 +15905,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1529285949}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -338, y: -218, z: -298}
+  m_LocalPosition: {x: -186, y: -171, z: -298}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
