@@ -5,8 +5,8 @@ using UnityEngine;
 public class HorizontalPlatform : MonoBehaviour
 {
     //To check the positions of where the platform will move
-    public GameObject horizontalPlatform;
     public GameObject nextPlatform;
+    public Vector3 PCG_target_pos;
     private Vector3 originalPos;
     public Vector3 targetPos;
     public Vector3 nextSize;
@@ -24,8 +24,8 @@ public class HorizontalPlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        originalPos = horizontalPlatform.transform.position;
-        targetPos = new Vector3(nextPlatform.transform.position.x, originalPos.y, nextPlatform.transform.position.z);
+        originalPos = transform.position;
+        targetPos = new Vector3(PCG_target_pos.x, originalPos.y, PCG_target_pos.z);
         CheckDirection();
 
         time = 0f;
@@ -95,7 +95,6 @@ public class HorizontalPlatform : MonoBehaviour
     {
         //Get size of nextPlatform
         nextSize = nextPlatform.GetComponent<Collider>().bounds.size;
-        Vector3 tempPos = targetPos;
 
         //Check direction on x
         if (originalPos.x > nextPlatform.transform.position.x)
