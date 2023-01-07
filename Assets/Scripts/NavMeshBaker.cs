@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class NavMeshBaker : MonoBehaviour
 {
     public NavMeshSurface[] platforms;
+    public GeneratePlatforms generatePlatforms;
     void Start()
     {
         for (int i = 0; i < platforms.Length; i++) {

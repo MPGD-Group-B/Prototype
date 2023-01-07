@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class GeneratePlatforms : MonoBehaviour
 {
+    /* It only works if the x position of the endObject is higher than the start object
+     * Same if its direction is on the z 
+     * */
+
     //Fitting between two checkpoints
     public GameObject startObject;
     public GameObject endObject;
@@ -23,11 +27,12 @@ public class GeneratePlatforms : MonoBehaviour
     private Vector3 groundPlatSize;  //They all have the same size
     public GameObject timedPlat; //Number 2
     public GameObject horizontalPlat; // Number 3
-    public GameObject empty;
+    public GameObject empty; //Nullholder
 
     //Traps and enemies
     public GameObject jellyFish;
-
+    public GameObject enemy;
+    public GameObject waste;
 
     //Scripts
     private HorizontalPlatform horizontalScript;
@@ -38,16 +43,28 @@ public class GeneratePlatforms : MonoBehaviour
     int[,] map;
     Vector3[,] pos;
     GameObject[,] objMap;
+    GameObject[] enemies;
 
-    void Start()
+    private bool instantiated = false;
+    private bool finished = false;
+
+    void OnTriggerEnter(Collider other)
     {
-        InitialiseGrid();
+        if (other.gameObject.tag == "Player")
+        { 
+            if (!instantiated)
+            {
+                InitialiseGrid();
+            }
+        }
     }
 
 
     //Checks which direction the next checkpoint is, x or z
     void InitialiseGrid()
     {
+
+
         //Positions of the two boundary checkpoints
         startObjPos = startObject.transform.position;
         endObjPos = endObject.transform.position;
@@ -267,7 +284,9 @@ public class GeneratePlatforms : MonoBehaviour
                 for (int z = 0; z < mapWidth; z++)
                 {
                     if (objMap[x, z].name.Equals("HorizontalPlatform(Clone)"))
-                    {
+                    {                   
+                        objMap[x, z].GetComponent<HorizontalPlatform>().speed = Random.Range(4.0f, 9.0f);
+                        objMap[x, z].GetComponent<HorizontalPlatform>().timeDelay = Random.Range(2.0f, 5.0f);
                         if (x < mapLength - 2)
                         {
                             for (int j = 0; j < mapWidth; j++)
@@ -275,35 +294,72 @@ public class GeneratePlatforms : MonoBehaviour
                                 if (objMap[x + 2, j].name.Equals("Platform(Clone)"))
                                 {
                                     objMap[x, z].GetComponent<HorizontalPlatform>().nextPlatform = objMap[x + 2, j];
-                                    objMap[x, z].GetComponent<HorizontalPlatform>().speed = Random.Range(4.0f, 9.0f);
-                                    objMap[x, z].GetComponent<HorizontalPlatform>().timeDelay = Random.Range(1.0f, 4.0f);
                                 }
                             }
                         }
                         else
                         {
                             objMap[x, z].GetComponent<HorizontalPlatform>().nextPlatform = endObject;
-                            objMap[x, z].GetComponent<HorizontalPlatform>().speed = Random.Range(4.0f, 9.0f);
-                            objMap[x, z].GetComponent<HorizontalPlatform>().timeDelay = Random.Range(1.0f, 4.0f);
+
                         }
                     }
                     else if (objMap[x,z].name.Equals("Platform(Clone)"))
                     {
                         objMap[x, z].transform.localScale += new Vector3(Random.Range(-0.2f, 0.5f), Random.Range(-0.2f, 0.5f), Random.Range(-0.2f, 0.5f));
+                        int enemyNum = Random.Range(0, 2);
+                        if (enemyNum == 1)
+                        {
+                            Instantiate(enemy, new Vector3(pos[x, z].x, pos[x, z].y + 1, pos[x, z].z), Quaternion.identity);
+                        }
+                        int toxicNum = Random.Range(0, 2);
+                        if (toxicNum == 1)
+                        {
+                            Instantiate(waste, new Vector3(objMap[x, z].transform.position.x + Random.Range(-objMap[x, z].GetComponent<Collider>().bounds.size.x / 2, objMap[x, z].GetComponent<Collider>().bounds.size.x / 2), pos[x, z].y + 1, objMap[x, z].transform.position.z + Random.Range(-objMap[x, z].GetComponent<Collider>().bounds.size.z / 2, objMap[x, z].GetComponent<Collider>().bounds.size.z / 2)), Quaternion.identity);
+                        }
+                        if (x < mapLength - 1)
+                        {
+                            if (objMap[x + 1, z].name.Equals("Platform(Clone)"))
+                            {                                
+                                int[] jellyNum = new int[5];
+                                for (int i = 0; i < 5; i++)
+                                {
+                                    Debug.Log(jellyFish.GetComponent<Renderer>().bounds.size.z);
+                                    Debug.Log(objMap[x, z].transform.position.z + objMap[x, z].GetComponent<Renderer>().bounds.size.z / 2 - jellyFish.GetComponent<Renderer>().bounds.size.z * i);
+                                    jellyNum[i] = Random.Range(0, 2);
+                                    if (jellyNum[i] == 1)
+                                    {
+                                        Instantiate(jellyFish, new Vector3(objMap[x, z].transform.position.x + objMap[x, z].GetComponent<Collider>().bounds.size.x / 2.0f + 2.0f, objMap[x, z].transform.position.y, (objMap[x, z].transform.position.z + objMap[x, z].GetComponent<Collider>().bounds.size.z / 2.0f) - ((jellyFish.GetComponent<Renderer>().bounds.size.z + 0.5f) * i)), Quaternion.identity);
+                                    }
+                                }
+                            }
+                        }
+                        if (z == 0)
+                        {                            
+                            if (objMap[x, z + 1].name.Equals("Platform(Clone)"))
+                            {
+                                int[] jellyNum = new int[5]; 
+                                for (int i = 0; i < 5; i++)
+                                {
+                                    jellyNum[i] = Random.Range(0, 2);
+                                    if (jellyNum[i] == 1)
+                                    {
+                                        Instantiate(jellyFish, new Vector3((objMap[x, z].transform.position.x + objMap[x, z].GetComponent<Collider>().bounds.size.x / 2.0f) - ((jellyFish.GetComponent<Renderer>().bounds.size.x + 0.5f) * i), pos[x, z].y, objMap[x, z].transform.position.z + objMap[x, z].GetComponent<Collider>().bounds.size.z / 2.0f + 2.0f), Quaternion.identity);
+                                    }
+                                }
+                            }
+                        }
                     }
                     else if (objMap[x, z].name.Equals("TimeedPlatform(Clone)"))
                     {
-                        objMap[x, z].GetComponent<TimedPlatform>().timeToTogglePlatform = Random.Range(2.0f, 5.0f);
+                        objMap[x, z].GetComponent<TimedPlatform>().timeToTogglePlatform = Random.Range(4.0f, 6.0f);
                     }
                 }
             }
         }
         else //Z
         {
-            //Debug.Log("z");
-
             //Distance between boundary checkpoints and PCG egde platforms
-            startPos = new Vector3(startObjPos.x - groundPlatSize.x, startObjPos.y, startObjPos.z + startObjSize.z / 2 + groundPlatSize.z + 2);
+            startPos = new Vector3(startObjPos.x, startObjPos.y, startObjPos.z + startObjSize.z / 2 + 7);
             endPos = new Vector3(endObjPos.x, endObjPos.y, endObjPos.z - endObjSize.z / 2);
 
             //Number of platforms that can fit between the two checkpoint
@@ -462,6 +518,8 @@ public class GeneratePlatforms : MonoBehaviour
                 for (int z = 0; z < mapWidth; z++)
                 {
                     pos[x, z] = new Vector3((startPos.x - 5 + (groundPlatSize.x + 2) * z) + Random.Range(-1.0f, 1.0f), (startPos.y - (startObjSize.y - startObjSize.y / 2)) + Random.Range(-1.0f, 1.0f), (startPos.z + (groundPlatSize.z + 5) * x) + Random.Range(-1.0f, 1.0f));
+                    //pos[x, z] = new Vector3((startPos.x + (groundPlatSize.x + 5) * x) + Random.Range(-1.0f, 1.0f), (startPos.y - (startObjSize.y - startObjSize.y / 2)) + Random.Range(-1.0f, 1.0f), (startPos.z - 5 + (groundPlatSize.z * 2) * z) + Random.Range(-1.0f, 1.0f));
+
                 }
             }
 
@@ -494,34 +552,6 @@ public class GeneratePlatforms : MonoBehaviour
                 }
             }
 
-            ////Set target for Horizontal Platforms
-            //for (int x = 0; x < mapLength; x++)
-            //{
-            //    for (int z = 0; z < mapWidth; z++)
-            //    {
-            //        if (objMap[x, z].name.Equals("HorizontalPlatform(Clone)"))
-            //        {
-            //            if (x < mapLength - 2)
-            //            {
-            //                for (int j = 0; j < mapWidth; j++)
-            //                {
-            //                    if (objMap[x + 2, j].name.Equals("Platform(Clone)"))
-            //                    {
-            //                        objMap[x, z].GetComponent<HorizontalPlatform>().nextPlatform = objMap[x + 2, j];
-            //                        objMap[x, z].GetComponent<HorizontalPlatform>().speed = Random.Range(4.0f, 9.0f);
-            //                        objMap[x, z].GetComponent<HorizontalPlatform>().timeDelay = Random.Range(0.0f, 4.0f);
-            //                    }
-            //                }
-            //            }
-            //            else
-            //            {
-            //                objMap[x, z].GetComponent<HorizontalPlatform>().nextPlatform = endObject;
-            //                objMap[x, z].GetComponent<HorizontalPlatform>().speed = Random.Range(4.0f, 9.0f);
-            //                objMap[x, z].GetComponent<HorizontalPlatform>().timeDelay = Random.Range(0.0f, 4.0f);
-            //            }
-            //        }
-            //    }
-            //}
             //Set target for Horizontal Platforms
             for (int x = 0; x < mapLength; x++)
             {
@@ -551,6 +581,45 @@ public class GeneratePlatforms : MonoBehaviour
                     else if (objMap[x, z].name.Equals("Platform(Clone)"))
                     {
                         objMap[x, z].transform.localScale += new Vector3(Random.Range(-0.2f, 0.5f), Random.Range(-0.2f, 0.5f), Random.Range(-0.2f, 0.5f));
+                        int enemyNum = Random.Range(0, 2);
+                        if (enemyNum == 1)
+                        {
+                            Instantiate(enemy, new Vector3(pos[x, z].x, pos[x, z].y + 1, pos[x, z].z), Quaternion.identity);
+                        }
+
+
+
+
+                        if (x < mapLength - 1)
+                        {
+                            if (objMap[x + 1, z].name.Equals("Platform(Clone)"))
+                            {
+                                int[] jellyNum = new int[5];
+                                for (int i = 0; i < 5; i++)
+                                {
+                                    jellyNum[i] = Random.Range(0, 2);
+                                    if (jellyNum[i] == 1)
+                                    {
+                                        Instantiate(jellyFish, new Vector3((objMap[x, z].transform.position.x + objMap[x, z].GetComponent<Collider>().bounds.size.x / 2.0f) - ((jellyFish.GetComponent<Renderer>().bounds.size.x + 0.5f) * i), pos[x, z].y, objMap[x, z].transform.position.z + objMap[x, z].GetComponent<Collider>().bounds.size.z / 2.0f + 2.0f), Quaternion.identity);
+                                    }
+                                }
+                            }
+                        }
+                        if (z == 0)
+                        {
+                            if (objMap[x, z + 1].name.Equals("Platform(Clone)"))
+                            {
+                                int[] jellyNum = new int[5];
+                                for (int i = 0; i < 5; i++)
+                                {
+                                    jellyNum[i] = Random.Range(0, 2);
+                                    if (jellyNum[i] == 1)
+                                    {
+                                        Instantiate(jellyFish, new Vector3(objMap[x, z].transform.position.x + objMap[x, z].GetComponent<Collider>().bounds.size.x / 2.0f + 2.0f, objMap[x, z].transform.position.y, (objMap[x, z].transform.position.z + objMap[x, z].GetComponent<Collider>().bounds.size.z / 2.0f) - ((jellyFish.GetComponent<Renderer>().bounds.size.z + 0.5f) * i)), Quaternion.identity);
+                                    }
+                                }
+                            }
+                        }
                     }
                     else if (objMap[x, z].name.Equals("TimeedPlatform(Clone)"))
                     {
@@ -561,6 +630,6 @@ public class GeneratePlatforms : MonoBehaviour
         }
 
 
-
+        instantiated = true;
     }
 }
