@@ -10,6 +10,8 @@ public class GeneratePlatforms : MonoBehaviour
      * Same if its direction is on the z 
      * */
 
+    public GameObject player;
+
     //Fitting between two checkpoints
     public GameObject startObject;
     public GameObject endObject;
@@ -66,21 +68,22 @@ public class GeneratePlatforms : MonoBehaviour
                 Debug.Log("initialise");
                 InitialiseGrid();
                 //bakeNavMesh();
+                player.GetComponent<PlayerController>().originalPos = player.GetComponent<CharacterController>().transform.position;
             }
         }
     }
 
     //bake nav mesh when new platform is created
     void bakeNavMesh() {
-        Debug.Log("run into bakeNavMesh");
-        Debug.Log("length is " + platforms.Length);
+        //Debug.Log("run into bakeNavMesh");
+        //Debug.Log("length is " + platforms.Length);
         //mesh.BuildNavMesh();
-        Debug.Log("finished");
+        //Debug.Log("finished");
         //platforms[0] = mesh;
         for (int i = 0; i < platforms.Length; i++)
         {
             platforms[i].BuildNavMesh();
-            Debug.Log("item in platform"+ platforms[i]);
+            //Debug.Log("item in platform"+ platforms[i]);
         }
     }
 

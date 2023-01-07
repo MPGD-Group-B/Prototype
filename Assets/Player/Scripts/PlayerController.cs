@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveValue;
     private float verticalVelocity;
     private Vector3 horizontalVelocity;
-    private Vector3 originalPos;
+    public Vector3 originalPos;
     public string stealthTag;
     private int onAirCount;
     public int jumpDelay;
