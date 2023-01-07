@@ -145,6 +145,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            this.transform.parent = null;
             onAirCount++;
             //Debug.Log("in here");
             this.gameObject.tag = "Player";
