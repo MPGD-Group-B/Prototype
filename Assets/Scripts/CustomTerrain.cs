@@ -11,7 +11,7 @@ public class CustomTerrain : MonoBehaviour
     public bool resetTerrain = true;
 
 
-    //Perlin Noise
+    //initial variable declaration / initlization can be changed in the inspector
     public float xScale = 0.1f;
     public float yScale = 0.1f;
     public int xOffset = 0;
@@ -26,11 +26,11 @@ public class CustomTerrain : MonoBehaviour
 
     void OnEnable()
     {
-        Debug.Log("Initialising Terrain Data");
+        //Debug.Log("Initialising Terrain Data");
         terrain = this.GetComponent<Terrain>();
         terrainData = Terrain.activeTerrain.terrainData;
     }
-
+    //returning hights 
    float[,] GetHeightMap()
     {
         if (!resetTerrain)
@@ -43,6 +43,8 @@ public class CustomTerrain : MonoBehaviour
                              terrainData.heightmapResolution];
             
     }
+
+    // function to reset terrain back initial state i.e flat
      public void ResetTerrain()
     {
         float[,] heightMap;
@@ -58,6 +60,7 @@ public class CustomTerrain : MonoBehaviour
 
     }
 
+    //applying perlin noise ho terrain  
     public void PerlinNoise()
     {
         float[,] heightMap = GetHeightMap();
@@ -73,6 +76,7 @@ public class CustomTerrain : MonoBehaviour
 
    
 
+    //fBM function calculation
     public static float fBM (float x, float y, int oct, float persistance)
    {
     float total = 0;

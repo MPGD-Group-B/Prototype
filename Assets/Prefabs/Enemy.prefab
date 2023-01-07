@@ -142,7 +142,7 @@ MonoBehaviour:
   route: {x: 5, y: 0, z: 0}
   routeSet: 0
   posDirection: 0
-  range: 5
+  range: 2
   attackTime: 0
   attacked: 0
   sightRange: 10

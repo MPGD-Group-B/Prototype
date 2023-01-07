@@ -12,6 +12,7 @@ public class NavMeshBaker : MonoBehaviour
         for (int i = 0; i < platforms.Length; i++) {
             platforms[i].BuildNavMesh();
         }
+
     }
 
     // Update is called once per frame

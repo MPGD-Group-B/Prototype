@@ -27,7 +27,7 @@ public class Collector : MonoBehaviour
         if (points >= maxPoints)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            Debug.Log("You beat this level");
+            //Debug.Log("You beat this level");
         }
     }
 }
