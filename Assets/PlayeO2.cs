@@ -20,11 +20,11 @@ public class PlayerO2 : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.w))
-		{
-			TakeDamage(1.5);
-		}
-	}
+        if (Input.GetKeyDown(KeyCode.w))
+        {
+            TakeDamage(1.5);
+        }
+    }
 
 	void TakeDamage(int damage)
 	{
