@@ -1,3 +1,4 @@
+// referenced code from the course procedural terrain generation : https://www.udemy.com/course/procedural-terrain-generation-with-unity
 using UnityEngine;
 using UnityEditor;
 using EditorGUITable;
@@ -13,7 +14,7 @@ public class CustomTerrainEditor : Editor
 
     //show menus bools
     bool showPerlinNoise = false;
-    bool showMultiplePerlin = false;
+  
 
     //properties
     SerializedProperty resetTerrain;
@@ -34,6 +35,7 @@ public class CustomTerrainEditor : Editor
 
     void OnEnable() 
     {
+        
         resetTerrain = serializedObject.FindProperty("resetTerrain");
         xScale = serializedObject.FindProperty("xScale");
         yScale = serializedObject.FindProperty("yScale");
@@ -59,7 +61,7 @@ public class CustomTerrainEditor : Editor
             terrain.ResetTerrain();
         }
 
-       showPerlinNoise = EditorGUILayout.Foldout(showPerlinNoise, "Single Perlin Noise");
+       showPerlinNoise = EditorGUILayout.Foldout(showPerlinNoise, "Perlin Noise");
        if (showPerlinNoise)
        {
             EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
