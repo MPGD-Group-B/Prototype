@@ -85,7 +85,7 @@ public class EnemyAI : MonoBehaviour
         if (direction == false) {
             x = -range;
         }
-        Debug.Log(transform.position.x);
+        //Debug.Log(transform.position.x);
         route = new Vector3(transform.position.x+x, transform.position.y, transform.position.z);
     }
 

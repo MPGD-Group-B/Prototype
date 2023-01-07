@@ -9,6 +9,7 @@ TagManager:
   - DoubleJump
   - Waste
   - Enemy
+  - TimeedPlatform
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - UI
   - platForm
   - Terrain
-  - 
+  - RequireMesh
   - 
   - 
   - 
