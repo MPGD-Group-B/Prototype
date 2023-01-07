@@ -111,15 +111,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038d869d717b088498e501b208325b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 2437234022564932494, guid: 209548daf6df08d4197c416503ac7691, type: 3}
   startObject: {fileID: 6327243459995259966}
   endObject: {fileID: 0}
   groundPlat: {fileID: 3627923988699075527, guid: 4f3ec6ea0a7b9234d9aa2558303bd171, type: 3}
   timedPlat: {fileID: 8856661699817019813, guid: d7d1605e68b0ba247a25ec04aa701559, type: 3}
   horizontalPlat: {fileID: 3627923988699075527, guid: 937f26d36685b9845ba7356b3572eb25, type: 3}
-  empty: {fileID: 0}
+  empty: {fileID: 1168850434107791827, guid: 05f9a7d3b7ed15d4e87e2bc387648c20, type: 3}
   jellyFish: {fileID: 6268604130566089363, guid: 4f995d869a4af6c4195823f61a30f5e7, type: 3}
   enemy: {fileID: 2856445945570965045, guid: 7ce1155ba5b516d498d23c348fc82476, type: 3}
   waste: {fileID: 1913253333731045666, guid: df430c5c70037f84aab01e3ace19ec2b, type: 3}
+  platforms: []
+  mesh: {fileID: 0}
 --- !u!1001 &6561616799063042415
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -130,7 +133,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 206cadd5fd5310e4e8cf8e2ae9e4ad78, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 206cadd5fd5310e4e8cf8e2ae9e4ad78, type: 3}
       propertyPath: m_LocalPosition.x
@@ -174,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 206cadd5fd5310e4e8cf8e2ae9e4ad78, type: 3}
       propertyPath: m_Name
-      value: Spawn (2)
+      value: Checkpoint
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects:
