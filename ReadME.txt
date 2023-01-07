@@ -25,4 +25,4 @@ Mouse movement: Camera control
 
 
 Refrance this project uses Editor GUI table package credit - Jeremy Quenitin 
-// reference code from the course procedural terrain generation : https://www.udemy.com/course/procedural-terrain-generation-with-unity
+// referenced code from the course procedural terrain generation : https://www.udemy.com/course/procedural-terrain-generation-with-unity
