@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 
 public class GeneratePlatforms : MonoBehaviour
@@ -48,14 +49,38 @@ public class GeneratePlatforms : MonoBehaviour
     private bool instantiated = false;
     private bool finished = false;
 
+    //bake nav mesh
+    public NavMeshSurface[] platforms;
+    public NavMeshSurface mesh;
+
+    private void Update()
+    {
+        bakeNavMesh();
+    }
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         { 
             if (!instantiated)
             {
+                Debug.Log("initialise");
                 InitialiseGrid();
+                //bakeNavMesh();
             }
+        }
+    }
+
+    //bake nav mesh when new platform is created
+    void bakeNavMesh() {
+        Debug.Log("run into bakeNavMesh");
+        Debug.Log("length is " + platforms.Length);
+        //mesh.BuildNavMesh();
+        Debug.Log("finished");
+        //platforms[0] = mesh;
+        for (int i = 0; i < platforms.Length; i++)
+        {
+            platforms[i].BuildNavMesh();
+            Debug.Log("item in platform"+ platforms[i]);
         }
     }
 
@@ -256,6 +281,7 @@ public class GeneratePlatforms : MonoBehaviour
             {
                 for (int z = 0; z < mapWidth; z++)
                 {
+                    //bakeNavMesh();
                     if (map[x, z] == 1)
                     {
                         objMap[x, z] = Instantiate(groundPlat, pos[x, z], transform.rotation);
