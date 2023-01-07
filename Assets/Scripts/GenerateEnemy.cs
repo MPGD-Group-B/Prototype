@@ -41,11 +41,11 @@ public class GenerateEnemy : MonoBehaviour
                 //test boundary
                 if (currentX - 1 >= 0)
                 {
-                    Debug.Log("inside");
-                    Debug.Log("currentY is " + currentY + "currentX - 1 is " + (currentX-1));
+                    //Debug.Log("inside");
+                    //Debug.Log("currentY is " + currentY + "currentX - 1 is " + (currentX-1));
                     if (currentY == 3 && currentX - 1 != 1)
                     {
-                        Debug.Log("inside first if ");
+                        //Debug.Log("inside first if ");
                         currentX = currentX - 1;
                         map[currentY, currentX] = 2;
                     }
@@ -85,12 +85,12 @@ public class GenerateEnemy : MonoBehaviour
             //end condition
             if (currentY == 0 || (currentY == 1 && currentX == 1)) {
                 end = true;
-                Debug.Log("the end location is " +  map[currentY, currentX]);
+                //Debug.Log("the end location is " +  map[currentY, currentX]);
                 for (int x = 0; x < 3; x++)
                 {
                     for (int y = 0; y < 4; y++)
                     {
-                        Debug.Log(map[y, x]);
+                        //Debug.Log(map[y, x]);
                         if (map[y, x] == 2 || map[y, x] == 3 || map[y, x] == 4)
                         {
                             Instantiate(platform, new Vector3(50 + 20 * x, 5, 50 + 20 * y), Quaternion.identity);

@@ -5,7 +5,6 @@ using UnityEngine;
 public class HorizontalPlatform : MonoBehaviour
 {
     //To check the positions of where the platform will move
-    public GameObject horizontalPlatform;
     public GameObject nextPlatform;
     private Vector3 originalPos;
     public Vector3 targetPos;
@@ -24,7 +23,7 @@ public class HorizontalPlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        originalPos = horizontalPlatform.transform.position;
+        originalPos = transform.position;
         targetPos = new Vector3(nextPlatform.transform.position.x, originalPos.y, nextPlatform.transform.position.z);
         CheckDirection();
 
@@ -97,11 +96,12 @@ public class HorizontalPlatform : MonoBehaviour
         nextSize = nextPlatform.GetComponent<Collider>().bounds.size;
         Vector3 tempPos = targetPos;
 
+
         //Check direction on x
-        if (originalPos.x > nextPlatform.transform.position.x)
+        if (originalPos.x >= nextPlatform.transform.position.x)
         {
             //Check direction on z
-            if (originalPos.z > nextPlatform.transform.position.z)
+            if (originalPos.z >= nextPlatform.transform.position.z)
             {
                 //Check if targetPos.x is closer or z
                 if (originalPos.x - targetPos.x > originalPos.z - targetPos.z)
@@ -116,7 +116,7 @@ public class HorizontalPlatform : MonoBehaviour
                     targetPos.z = targetPos.z + nextSize.z / 2 + 5;
                 }
             }
-            else if (originalPos.z < nextPlatform.transform.position.z)
+            else if (originalPos.z <= nextPlatform.transform.position.z)
             {
                 if (originalPos.x - targetPos.x < targetPos.z - originalPos.z)
                 {
@@ -130,10 +130,10 @@ public class HorizontalPlatform : MonoBehaviour
                 }
             }
         }
-        else if (originalPos.x < nextPlatform.transform.position.x)
+        else if (originalPos.x <= nextPlatform.transform.position.x)
         {
             //Check direction on z
-            if (originalPos.z > nextPlatform.transform.position.z)
+            if (originalPos.z >= nextPlatform.transform.position.z)
             {
                 //Check if targetPos.x is closer or z
                 if (targetPos.x - originalPos.x > originalPos.z - targetPos.z)
@@ -147,8 +147,12 @@ public class HorizontalPlatform : MonoBehaviour
                     Debug.Log("6");
                     targetPos.z = targetPos.z + nextSize.z / 2 + 5;
                 }
+                else
+                {
+                    targetPos.x = targetPos.x - nextSize.x / 2 - 5;
+                }
             }
-            else if (originalPos.z < nextPlatform.transform.position.z)
+            else if (originalPos.z <= nextPlatform.transform.position.z)
             {
                 if (targetPos.x - originalPos.x > targetPos.z - originalPos.z)
                 {

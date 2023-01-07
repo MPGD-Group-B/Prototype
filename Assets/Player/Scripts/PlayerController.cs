@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public string stealthTag;
     private int onAirCount;
     public int jumpDelay;
+    private Vector3 lastLocalPosition;
 
     public bool doubleJump;
 
@@ -40,6 +41,12 @@ public class PlayerController : MonoBehaviour
         }
         if (hitObject.tag == "Enemy") {
             controller.transform.position = originalPos;
+        }
+        if (hitObject.tag == "Ground")
+        {
+            this.transform.SetParent(hitObject.transform, true);
+            lastLocalPosition = transform.parent.position;
+            //this.parent = hitObject;
         }
     }
 
@@ -103,7 +110,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(isCroch)
+        if (isCroch)
         {
             magnification = crochMagnification;
             controller.height = 1;
@@ -121,8 +128,14 @@ public class PlayerController : MonoBehaviour
             onAirCount = 0;
             Vector3 forward = transform.TransformDirection(Vector3.forward);
             Vector3 right = transform.TransformDirection(Vector3.right);
-            Vector3 movement = right * moveValue.x * rightSpeed+ forward * moveValue.y * forwardSpeed;
-            controller.SimpleMove(movement * magnification);
+            Vector3 parentMovement = new(0, 0, 0);
+            if (transform.parent != null)
+            {
+                parentMovement = transform.parent.position - lastLocalPosition;
+                Debug.Log(parentMovement);
+            }
+            Vector3 movement = right * moveValue.x * rightSpeed + forward * moveValue.y * forwardSpeed;
+            controller.Move(movement * magnification * Time.deltaTime + parentMovement);
             magnification = 1;
             horizontalVelocity = new Vector3(controller.velocity.x, 0, controller.velocity.z);
             if (horizontalVelocity == Vector3.zero)
@@ -142,8 +155,8 @@ public class PlayerController : MonoBehaviour
                 {
                     Vector3 forward = transform.TransformDirection(Vector3.forward);
                     Vector3 right = transform.TransformDirection(Vector3.right);
-                    Vector3 movement = right * moveValue.x / 2.0f * rightSpeed + forward * moveValue.y * forwardSpeed / 2.0f;
-                    controller.Move(movement * Time.deltaTime + Vector3.up * verticalVelocity * Time.deltaTime);
+                    Vector3 movement = transform.right * moveValue.x / 2.0f * rightSpeed + transform.forward * moveValue.y * forwardSpeed / 2.0f;
+                    controller.Move(movement * Time.deltaTime + transform.up * verticalVelocity * Time.deltaTime);
                     horizontalVelocity = new Vector3(controller.velocity.x, 0, controller.velocity.z);
                 }
                 else
@@ -155,8 +168,8 @@ public class PlayerController : MonoBehaviour
             {
                 Vector3 forward = transform.TransformDirection(Vector3.forward);
                 Vector3 right = transform.TransformDirection(Vector3.right);
-                horizontalVelocity = Vector3.RotateTowards(horizontalVelocity, right, moveValue.x * 1.0f, 0.0f);
-                controller.Move(horizontalVelocity * Time.deltaTime + Vector3.up * verticalVelocity * Time.deltaTime);
+                horizontalVelocity = Vector3.RotateTowards(horizontalVelocity, transform.right, moveValue.x * 1.0f, 0.0f);
+                controller.Move(horizontalVelocity * Time.deltaTime + transform.up * verticalVelocity * Time.deltaTime);
             }
         }
         
@@ -169,6 +182,10 @@ public class PlayerController : MonoBehaviour
             Debug.Log("current position is" + controller.transform.position);
         }
         //Debug.Log(controller.isGrounded);
+        if (transform.parent != null)
+        {
+            lastLocalPosition = transform.parent.position;
+        }
     }
 
     void SetPosition(Vector3 position)
