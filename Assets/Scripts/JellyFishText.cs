@@ -39,7 +39,7 @@ public class JellyFishText : MonoBehaviour
     //GUI Function
     void MyWindow(int WindowID)
     {
-        GUILayout.Label("Jelly Fish");
+        GUILayout.Label("Danger, Avoid it!");
     }
     //On mouse Click
     void OnMouseDown()

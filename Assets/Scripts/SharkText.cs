@@ -39,7 +39,7 @@ public class SharkText : MonoBehaviour
     //GUI Function
     void MyWindow(int WindowID)
     {
-        GUILayout.Label("Shark!");
+        GUILayout.Label("Danger,avoid it!");
     }
     //On mouse Click
     void OnMouseDown()

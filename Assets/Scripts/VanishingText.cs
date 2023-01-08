@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Waste : MonoBehaviour
+public class VanishingText : MonoBehaviour
 {
     //    public Transform cube;
     bool isShowTip;
@@ -21,24 +21,25 @@ public class Waste : MonoBehaviour
     {
         isShowTip = false;
     }
+
     void OnGUI()
     {
         if (isShowTip)
         {
             GUIStyle style1 = new GUIStyle();
             style1.fontSize = 30;
-            style1.normal.textColor = Color.yellow;
-            GUI.Label(new Rect(Input.mousePosition.x, Screen.height - Input.mousePosition.y, 400, 50), "Nuclear Waste", style1);
+            style1.normal.textColor = Color.red;
+            GUI.Label(new Rect(Input.mousePosition.x, Screen.height - Input.mousePosition.y, 400, 50), "Vanishing Platform", style1);
 
         }
         if (WindowShow)
-            GUI.Window(0, new Rect(30, 30, 200, 100), MyWindow, "Nuclear Waste");
+            GUI.Window(0, new Rect(30, 30, 200, 100), MyWindow, "Vanishing Platform");
     }
 
     //GUI Function
     void MyWindow(int WindowID)
     {
-        GUILayout.Label("Pick it!");
+        GUILayout.Label("Watch out! It will disapear!");
     }
     //On mouse Click
     void OnMouseDown()
@@ -50,4 +51,3 @@ public class Waste : MonoBehaviour
             WindowShow = true;
     }
 }
-
