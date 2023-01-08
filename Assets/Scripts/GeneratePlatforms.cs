@@ -35,7 +35,7 @@ public class GeneratePlatforms : MonoBehaviour
     //Traps and enemies
     public GameObject jellyFish;
     public GameObject enemy;
-    public GameObject waste;
+    //public GameObject waste;
 
     //Scripts
     private HorizontalPlatform horizontalScript;
@@ -340,11 +340,11 @@ public class GeneratePlatforms : MonoBehaviour
                         {
                             Instantiate(enemy, new Vector3(pos[x, z].x, pos[x, z].y + 1, pos[x, z].z), Quaternion.identity);
                         }
-                        int toxicNum = Random.Range(0, 2);
-                        if (toxicNum == 1)
-                        {
-                            Instantiate(waste, new Vector3(objMap[x, z].transform.position.x + Random.Range(-objMap[x, z].GetComponent<Collider>().bounds.size.x / 2, objMap[x, z].GetComponent<Collider>().bounds.size.x / 2), pos[x, z].y + 1, objMap[x, z].transform.position.z + Random.Range(-objMap[x, z].GetComponent<Collider>().bounds.size.z / 2, objMap[x, z].GetComponent<Collider>().bounds.size.z / 2)), Quaternion.identity);
-                        }
+                        //int toxicNum = Random.Range(0, 2);
+                        //if (toxicNum == 1)
+                        //{
+                        //    Instantiate(waste, new Vector3(objMap[x, z].transform.position.x + Random.Range(-objMap[x, z].GetComponent<Collider>().bounds.size.x / 2, objMap[x, z].GetComponent<Collider>().bounds.size.x / 2), pos[x, z].y + 1, objMap[x, z].transform.position.z + Random.Range(-objMap[x, z].GetComponent<Collider>().bounds.size.z / 2, objMap[x, z].GetComponent<Collider>().bounds.size.z / 2)), Quaternion.identity);
+                        //}
                         if (x < mapLength - 1)
                         {
                             if (objMap[x + 1, z].name.Equals("Platform(Clone)"))
