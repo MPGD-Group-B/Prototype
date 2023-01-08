@@ -1808,6 +1808,7 @@ GameObject:
   - component: {fileID: 1208498622}
   - component: {fileID: 1208498621}
   - component: {fileID: 1208498620}
+  - component: {fileID: 1208498623}
   m_Layer: 5
   m_Name: Tutorial
   m_TagString: Untagged
@@ -1880,8 +1881,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: StartMenu, Assembly-CSharp
+      - m_Target: {fileID: 1208498623}
+        m_TargetAssemblyTypeName: Tutorial, Assembly-CSharp
         m_MethodName: play
         m_Mode: 1
         m_Arguments:
@@ -1930,6 +1931,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1208498618}
   m_CullTransparentMesh: 1
+--- !u!114 &1208498623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208498618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 455dfa5cc532156429d19bfe5af1209a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1222894463
 GameObject:
   m_ObjectHideFlags: 0
