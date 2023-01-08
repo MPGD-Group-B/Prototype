@@ -64,7 +64,18 @@ public class PlayerController : MonoBehaviour
         if(onAirCount < jumpDelay || doubleJump )
         {
             verticalVelocity = jumpSpeed;
-            controller.Move(Vector3.up * jumpSpeed * Time.deltaTime);
+            if (doubleJump)
+            {
+                Vector3 forward = transform.TransformDirection(Vector3.forward);
+                Vector3 right = transform.TransformDirection(Vector3.right);
+                Vector3 movement = transform.right * moveValue.x / 1.5f * rightSpeed + transform.forward * moveValue.y * forwardSpeed / 1.5f;
+                controller.Move(movement * Time.deltaTime + transform.up * verticalVelocity * Time.deltaTime);
+                horizontalVelocity = new Vector3(controller.velocity.x, 0, controller.velocity.z);
+            }
+            else
+            {
+                controller.Move(Vector3.up * jumpSpeed * Time.deltaTime);
+            }
             doubleJump = !doubleJump;
         }
         isCroch = false;
