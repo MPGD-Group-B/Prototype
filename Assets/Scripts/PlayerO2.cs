@@ -7,8 +7,6 @@ public class PlayerO2 : MonoBehaviour
 
 	public int maxHealth = 100;
 	public int currentHealth;
-	public GameObject player;
-	private Vector3 lastPosition;
 
 	public HealthBar healthBar;
 
@@ -17,24 +15,16 @@ public class PlayerO2 : MonoBehaviour
 	{
 		currentHealth = maxHealth;
 		healthBar.SetMaxHealth(maxHealth);
-		lastPosition = player.transform.position;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		float damage = (player.transform.position - lastPosition).magnitude;
-		if(damage != 0)
-        {
-			TakeDamage(1);
+		if (Input.GetKeyDown(KeyCode.W))
+		{
+			TakeDamage(2);
 		}
-		//TakeDamage(damage);
-		lastPosition = player.transform.position;
-		/*if (Input.GetAxis("Vertical")>0)
-        {
-            TakeDamage(1);
-        }*/
-    }
+	}
 
 	void TakeDamage(int damage)
 	{
