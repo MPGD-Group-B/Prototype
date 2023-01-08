@@ -9,7 +9,7 @@ W: forward
 A: left
 S: back
 D: right
-Control: crouch (stealth)
+C: crouch (stealth)
 Shift: sprint
 Space: jump
 Mouse movement: Camera control
