@@ -1,8 +1,8 @@
-The goal of the game is to collect as many pickups (nuclear waste) as possible.
-In this prototype, the game does not have a winning condition yet, but it will be added in the final game.
+You are a sea scientist and the goal of the game is to collect pickups (nuclear waste) to save the ocean. 
 
-You will die and respawn to the starting point if you fall from the platform or touches the enemies.
-The red ball enemy will chase you if you are inside its sight range. Use crouch to stealth and avoid its detection.
+You will die and respawn to the check point if you fall from the platform or touches the enemies.
+Be careful, jelly fish and sharks are mutated creatures that might kill you. Use crouch to hide yourself
+from the shark.
 
 To control the player:
 W: forward
@@ -13,6 +13,10 @@ C: crouch (stealth)
 Shift: sprint
 Space: jump
 Mouse movement: Camera control
+
+Press Space in air after jumping can perform double jump.
+
+The game contains 1 tutorial level and 2 main levels.
 
 
 
