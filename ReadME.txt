@@ -18,6 +18,15 @@ Press Space in air after jumping can perform double jump.
 
 The game contains 1 tutorial level and 2 main levels.
 
+#######################
+Known errors
+
+The tutorial may crash in webGL build, it is possible to play this stage in Unity Editor.
+
+The bar that shows the number of collectable is not working.
+
+The timer in the second level is not working, otherwise it will be timed.
+
 
 
 

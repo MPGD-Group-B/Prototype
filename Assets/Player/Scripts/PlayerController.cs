@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
             if (transform.parent != null)
             {
                 parentMovement = transform.parent.position - lastLocalPosition;
-                Debug.Log(parentMovement);
+                //Debug.Log(parentMovement);
             }
             Vector3 movement = right * moveValue.x * rightSpeed + forward * moveValue.y * forwardSpeed;
             controller.Move(movement * magnification * Time.deltaTime + parentMovement);
